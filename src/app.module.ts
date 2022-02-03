@@ -6,7 +6,7 @@ import { ReviewModule } from './review/review.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { getMongoConfig } from './configs/mongo.config';
-import { } from './configs/jwt.config';
+
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
@@ -17,8 +17,8 @@ import { } from './configs/jwt.config';
 		}),
 		AuthModule,
 		TopPageModule,
-		ReviewModule,
-		ProductModule
+		ProductModule,
+		ReviewModule
 	]
 })
 export class AppModule { }

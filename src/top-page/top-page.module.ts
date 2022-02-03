@@ -8,14 +8,14 @@ import { TopPageService } from './top-page.service';
 	controllers: [TopPageController],
 	imports: [
 		TypegooseModule.forFeature([
-		  {
-			typegooseClass: TopPageModel,
-			schemaOptions: {
-			  collection: 'TopPage'
+			{
+				typegooseClass: TopPageModel,
+				schemaOptions: {
+					collection: 'TopPage'
+				}
 			}
-		  }
 		])
-	  ],
+	],
 	providers: [TopPageService]
 })
 export class TopPageModule { }

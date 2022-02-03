@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../src/app.module';
+import { AppModule } from './../src/app.module';
 import { CreateReviewDto } from '../src/review/dto/create-review.dto';
-import { disconnect, Types } from 'mongoose';
+import { Types, disconnect } from 'mongoose';
 import { REVIEW_NOT_FOUND } from '../src/review/review.constants';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 
-
 const productId = new Types.ObjectId().toHexString();
-const loinDto: AuthDto = {
-    login: 'kamilka.kg',
-    password: 'kama2187'
+
+const loginDto: AuthDto = {
+	login: 'a@a.ru',
+	password: '1'
 };
 
 const testDto: CreateReviewDto = {
@@ -37,7 +37,7 @@ describe('AppController (e2e)', () => {
 
 		const { body } = await request(app.getHttpServer())
 			.post('/auth/login')
-			.send(loinDto);
+			.send(loginDto);
 		token = body.access_token;
 	});
 
@@ -59,8 +59,6 @@ describe('AppController (e2e)', () => {
 			.send({ ...testDto, rating: 0 })
 			.expect(400)
 			.then(({ body }: request.Response) => {
-				// tslint:disable-next-line: no-console
-				console.log(body);
 				done();
 			});
 	});

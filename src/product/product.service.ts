@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { InjectModel } from 'nestjs-typegoose';
-import { ReviewModel } from '../review/review.model';
+import { ReviewModel } from 'src/review/review.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FindProductDto } from './dto/find-product.dto';
 import { ProductModel } from './product.model';
 
 @Injectable()
 export class ProductService {
-	constructor(@InjectModel(ProductModel) private readonly productModel: ModelType<ProductModel>) {}
+	constructor(@InjectModel(ProductModel) private readonly productModel: ModelType<ProductModel>) { }
 
 	async create(dto: CreateProductDto) {
 		return this.productModel.create(dto);
@@ -18,7 +18,7 @@ export class ProductService {
 		return this.productModel.findById(id).exec();
 	}
 
-	async deleteByID(id: string) {
+	async deleteById(id: string) {
 		return this.productModel.findByIdAndDelete(id).exec();
 	}
 
@@ -57,7 +57,7 @@ export class ProductService {
 						$function: {
 							body: `function (reviews) {
 								reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-								return reviews
+								return reviews;
 							}`,
 							args: ['$reviews'],
 							lang: 'js'
@@ -65,6 +65,6 @@ export class ProductService {
 					}
 				}
 			}
-		]).exec()  as Promise<(ProductModel & { review: ReviewModel[], reviewCount: number, reviewAvg: number })[]>;
+		]).exec() as Promise<(ProductModel & { review: ReviewModel[], reviewCount: number, reviewAvg: number })[]>;
 	}
 }

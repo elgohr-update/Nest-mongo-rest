@@ -1,6 +1,5 @@
 import { prop } from '@typegoose/typegoose';
-import { TimeStamps, Base } from '@typegoose/typegoose/lib/defaultClasses';
-
+import { Base, TimeStamps } from '@typegoose/typegoose/lib/defaultClasses';
 
 class ProductCharacteristic {
 	@prop()
@@ -10,11 +9,8 @@ class ProductCharacteristic {
 	value: string;
 }
 
-
-export interface ProductModel extends Base {}
-
+export interface ProductModel extends Base { }
 export class ProductModel extends TimeStamps {
-	
 	@prop()
 	image: string;
 
@@ -25,13 +21,10 @@ export class ProductModel extends TimeStamps {
 	price: number;
 
 	@prop()
-	oldPrice: number;
+	oldPrice?: number;
 
 	@prop()
 	credit: number;
-
-	@prop()
-	calculatedRating: number;
 
 	@prop()
 	description: string;

@@ -10,8 +10,8 @@ export class CreateReviewDto {
 	@IsString()
 	description: string;
 
-	@Min(1, { message: 'Рейтинг не можее быть менее 1' })
 	@Max(5)
+	@Min(1, { message: 'Рейтинг не может быть менее 1' })
 	@IsNumber()
 	rating: number;
 

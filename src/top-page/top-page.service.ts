@@ -15,13 +15,13 @@ export class TopPageService {
 	async findById(id: string) {
 		const page = await this.topPageModel.findOne({id}).exec();
 		console.log(page);
-		return page;
+		return this.topPageModel.findById(id).exec();
 	}
 
 	async deleteByID(id: string) {
-		const a = await this.topPageModel.findByIdAndRemove(id).exec();
+		const a = await this.topPageModel.findByIdAndDelete(id).exec();
 		console.log(a);
-		return this.topPageModel.findByIdAndRemove(id).exec();
+		return a;
 	}
 
 	async updateById(id: string, dto: CreateTopPageModelDto) {

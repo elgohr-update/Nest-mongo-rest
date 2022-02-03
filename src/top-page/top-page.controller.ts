@@ -11,7 +11,6 @@ import {
 	UsePipes, 
 	ValidationPipe 
 } from '@nestjs/common';
-import { ObjectId } from 'mongoose';
 import { IdValidationPipe } from 'src/pipes/id-validation.pipe';
 import { CreateTopPageModelDto } from './dto/create-top-page.dto';
 import { FindTopPageDto } from './dto/find-top-page.dto';
@@ -28,12 +27,12 @@ export class TopPageController {
 	}
 
 	@Get(':id')
-	async get(@Param('id', IdValidationPipe) id: ObjectId) {
+	async get(@Param('id', IdValidationPipe) id: string) {
 		const page = await this.topPageService.findById(id);
-		// if (!page) {
-		// 	throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
-		// }
-		// return page;
+		if (!page) {
+			throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
+		}
+		return page;
 	}
 
 	@Get('byAlias/:alias')

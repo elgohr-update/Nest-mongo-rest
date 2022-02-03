@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ModelType } from '@typegoose/typegoose/lib/types';
-import { ObjectId } from 'mongoose';
 import { InjectModel } from 'nestjs-typegoose';
 import { CreateTopPageModelDto } from './dto/create-top-page.dto';
 import { TopLevelCategory, TopPageModel } from './top-page.model';
@@ -13,10 +12,10 @@ export class TopPageService {
 		return this.topPageModel.create(dto);
 	}
 
-	async findById(id: ObjectId) {
-		const a = await this.topPageModel.findOne(id).exec();
-		console.log(a)
-		// return this.topPageModel.findOne({ id }).exec();
+	async findById(id: string) {
+		const page = await this.topPageModel.findOne({id}).exec();
+		console.log(page);
+		return page;
 	}
 
 	async deleteByID(id: string) {

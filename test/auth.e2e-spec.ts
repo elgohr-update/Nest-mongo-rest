@@ -8,8 +8,8 @@ import { USER_NOT_FOUND_ERROR, WRONG_PASSWORD_ERROR } from '../src/auth/auth.con
 
 
 const loginDto: AuthDto = {
-    login: 'kamilka.kg',
-    password: 'kama2187'
+	login: 'kamilka.kg',
+	password: 'kama2187'
 };
 
 describe('AuthController (e2e)', () => {
